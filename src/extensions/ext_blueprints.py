@@ -1,4 +1,4 @@
-from dniko_app import DNikoApp
+from src.dniko_app import DNikoApp
 
 
 def init_app(app: DNikoApp):
