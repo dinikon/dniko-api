@@ -2,6 +2,7 @@ import logging
 import time
 
 from config import d_niko_config
+from extensions import ext_blueprints
 from src.dniko_app import DNikoApp
 
 
@@ -13,6 +14,7 @@ def create_fast_api_app():
 def create_app() -> DNikoApp:
     app = create_fast_api_app()
     initialize_extensions(app)
+    ext_blueprints.init_app(app)
     return app
 
 
