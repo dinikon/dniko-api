@@ -1,8 +1,0 @@
-{
-  "name": "JetBrains Dev Container",
-  "build": {
-    "dockerfile": "Dockerfile"
-  },
-  "remoteUser": "root",
-  "forwardPorts": [59709]
-}
