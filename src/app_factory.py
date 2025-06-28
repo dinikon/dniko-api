@@ -14,7 +14,6 @@ def create_fast_api_app():
 def create_app() -> DNikoApp:
     app = create_fast_api_app()
     initialize_extensions(app)
-    ext_blueprints.init_app(app)
     return app
 
 
