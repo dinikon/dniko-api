@@ -1,5 +1,6 @@
 from fastapi import APIRouter
 
+from config import d_niko_config
 from .constants import API_VERSION
 
 from .console import router as console_router
@@ -11,7 +12,7 @@ from .public_api import router as public_api_router
 from .platform import router as platform_router
 from .system import router as system_router
 
-router = APIRouter(prefix=f"/api/{API_VERSION}")
+router = APIRouter(prefix=f"/api/{d_niko_config.API_VERSION}")
 
 router.include_router(system_router)
 router.include_router(console_router)

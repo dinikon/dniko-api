@@ -32,3 +32,8 @@ class DeploymentConfig(BaseSettings):
         description="Deployment environment (e.g., 'PRODUCTION', 'DEVELOPMENT'), default to PRODUCTION",
         default="PRODUCTION",
     )
+
+    API_VERSION: str = Field(
+        description="Deployment edition of the application (e.g., 'SELF_HOSTED', 'CLOUD')",
+        default="v1",
+    )
