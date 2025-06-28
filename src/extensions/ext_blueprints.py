@@ -1,5 +1,5 @@
-from controllers.console import router as console_router
+from controllers import router as api_router
 
 
 def init_app(app):
-    app.include_router(console_router)
+    app.include_router(api_router)
