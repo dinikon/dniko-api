@@ -3,12 +3,38 @@ from typing import Any, Dict, Iterable, Sequence
 
 from fastapi import APIRouter, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from starlette.types import ASGIApp, Receive, Scope, Send
+
+
+class PrefixCORSMiddleware:
+    """CORSMiddleware filtered by path prefix."""
+
+    def __init__(self, app: ASGIApp, prefix: str, **cors_kwargs: Any) -> None:
+        self.prefix = prefix.rstrip("/") or "/"
+        self.cors = CORSMiddleware(app, **cors_kwargs)
+        self.app = app
+
+    async def __call__(self, scope: Scope, receive: Receive, send: Send) -> None:
+        path = scope.get("path", "")
+        if scope.get("type") == "http" and path.startswith(self.prefix):
+            await self.cors(scope, receive, send)
+        else:
+            await self.app(scope, receive, send)
 
 
 DEFAULT_METHODS: Sequence[str] = ("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
-DEFAULT_HEADERS: Sequence[str] = ("* ",)
+            self.router: APIRouter | None = None
 
+        self.router = target
 
+    def include_in(self, parent: FastAPI) -> None:
+        """Include router with path-specific CORS middleware."""
+        if self.router is None:
+            parent.add_middleware(CORSMiddleware, **self._opts)
+            return
+
+        parent.include_router(self.router)
+        parent.add_middleware(PrefixCORSMiddleware, prefix=self.prefix, **self._opts)
 def _normalize(opts: Dict[str, Any]) -> Dict[str, Any]:
     """
     Заполняем опции значениями по умолчанию,

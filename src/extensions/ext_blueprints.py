@@ -14,4 +14,4 @@ def init_app(app: DNikoApp):
         allow_headers=["Content-Type", "Authorization", "X-App-Code"],
         expose_headers=["X-Version", "X-Env"],
         allow_methods=["GET", "PUT", "POST", "DELETE", "OPTIONS", "PATCH"],
-    ).mount_to(app)
+    ).include_in(app)
