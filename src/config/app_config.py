@@ -3,8 +3,8 @@ from pydantic_settings import (
     BaseSettings,
     PydanticBaseSettingsSource,
 )
-from config.deploy import DeploymentConfig
-from config.packaging import PackagingInfo
+from src.config.deploy import DeploymentConfig
+from src.config.packaging import PackagingInfo
 
 
 class DNikoConfig(

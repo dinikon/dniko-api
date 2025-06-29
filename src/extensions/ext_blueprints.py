@@ -1,4 +1,4 @@
-from controllers import router as api_router
+from src.controllers import router as api_router
 
 
 def init_app(app):

@@ -1,7 +1,6 @@
 from fastapi import APIRouter
 
-from config import d_niko_config
-from .constants import API_VERSION
+from src.config import d_niko_config
 
 from .console import router as console_router
 from .client import router as client_router

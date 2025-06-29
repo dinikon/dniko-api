@@ -1,5 +1,3 @@
-from importlib import reload
-
 import uvicorn
 
 from src.app_factory import create_app
